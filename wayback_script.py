@@ -126,7 +126,6 @@ def recover(url):
   else:
     print(upload.status_code)
   
-
   print("Trying to redirect the old url to the new one")
   url_to = upload.json()['guid']['rendered']
   url_to = clean_url(url_to)
