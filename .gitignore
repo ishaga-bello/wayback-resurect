@@ -1,0 +1,5 @@
+# Ignore virtual environment
+wayback/
+
+# Ignore Python bytecode
+__pycache__/
