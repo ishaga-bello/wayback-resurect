@@ -5,9 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wayback Machine Result</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
     <h1>Wayback Machine Result</h1>
-    <p>{{ result }}</p>
+    text area to display the result
+    <textarea id="result" rows="10" cols="50" readonly>
+        {% for item in result %}
+          {{item}}
+        {% endfor %}
+    </textarea>
+    
 </body>
 </html>

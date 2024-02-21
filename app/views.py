@@ -1,6 +1,6 @@
 from flask import render_template, request
 from app import app
-# from your_script import your_function  # Import your script function
+import wayback_resurrect as wr
 
 @app.route('/')
 def index():
@@ -9,6 +9,11 @@ def index():
 @app.route('/result', methods=['POST'])
 def result():
     url = request.form['url']
-    result = your_function(url)  # Call your function with the URL
+    logs = {
+      'wpUN': request.form['wpUN'],
+      'wpPW': request.form['wpPW'],
+      'wpDomain': request.form['wpDomain'],
+    }
+    result = wr.recover(url, logs)  # Call your function with the URL
 
     return render_template('result.html', result=result)

@@ -39,7 +39,7 @@ def get_cat_id(category, logs):
 
   return category_id
 
-def get_img_id(url, logs):
+def upload_image(url, logs):
   def imgPost(data):
     title = f'pexels-photo-15792909'
     headers = {"Content-Type": "image/jpeg", "Accept": "application/json", 'Content-Disposition': f"attachment; filename={title}-{token_hex(20)}.jpg",}
@@ -48,13 +48,14 @@ def get_img_id(url, logs):
 
   data = requests.get(url).content
   image = Image.open(BytesIO(data))
+  image = image.convert("RGB")
   enhancer = ImageEnhance.Color(image)
   fI = enhancer.enhance(random.uniform(.5,.5))
   imgData = BytesIO()
   fI.save(imgData, format='JPEG')
   img_data_value = imgData.getvalue()
 
-  return imgPost(img_data_value)['id']
+  return imgPost(img_data_value)
 
 
 def upload_content(post_data, logs):
@@ -101,7 +102,7 @@ def redirect(from_url, to_url, logs):
       auth=(username, password)
   )
 
-  return response.text
+  return response
 
 if __name__ == "__main__":
   data = {
